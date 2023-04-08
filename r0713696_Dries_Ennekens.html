@@ -10,7 +10,13 @@
 <body>
     <h1>Registreer</h1>
     <h5>Meld je aan bij Anoroc Services, wij beschermen jouw software tegen malware!</h5>
-    <form class="row g-3">
+
+    <div class="container-fluid row g-3">
+
+    <div class="col-md-8">
+
+    <form  class="row g-3" name="mijnForm" onsubmit="return(validateForm());">
+
         <div class="col-md-6">
           <label for="inputVoornaam" class="form-label">Voornaam</label>
           <input type="Voornaam" class="form-control" id="inputVoornaam" placeholder="Uw voornaam">
@@ -19,40 +25,42 @@
           <label for="inputNaam" class="form-label">Naam</label>
           <input type="Naam" class="form-control" id="inputNaam" placeholder="Uw naam">
         </div>
-        
-
         <div class="col-md-6">
             <label for="inputGebruikersnaam" class="form-label">Gebruikersnaam</label>
-            <div class="input-group">
+            <div class="input-group" >
               <div class="input-group-text">@</div>
-              <input type="text" class="form-control" id="autoSizingInputGroup" placeholder="u911236">
+              <input type="text" class="form-control" id="Gebruikersnaam" placeholder="u911236">
             </div>
           </div>
         
           <div class="col-md-6">
             <label for="inputEmail4" class="form-label">E-mailadres</label>
-            <input type="email" class="form-control" id="inputEmail4" placeholder="mail@example.be">
+            <input type="email" class="form-control" name="inputEmail4" placeholder="mail@example.be">
           </div>
+          
           <div class="col-md-6">
-            <label for="inputVoornaam" class="form-label">Wachtwoord</label>
-            <input type="Voornaam" class="form-control" id="inputVoornaam">
+            <label for="inputWachwoord" class="form-label">Wachtwoord</label>
+            <input type="Voornaam" class="form-control" id="inputWachtwoord">
             <div id="passwordHelpBlock" class="form-text">
                Je wachtwoord moet minstens 8 tekens lang zijn.
               </div>
           </div>
           <div class="col-md-6">
-            <label for="inputNaam" class="form-label">Herhaal wachtwoord</label>
-            <input type="Naam" class="form-control" id="inputNaam">
+            <label for="inputWachtwoord2" class="form-label">Herhaal wachtwoord</label>
+            <input type="Naam" class="form-control" id="inputWachtwoord2">
           </div>
         <div class="col-12">
-          <label for="inputAddress" class="form-label">Addres</label>
-          <input type="text" class="form-control" id="inputAddress" placeholder="Uw adres en huisnummer">
+          <label for="inputAdres" class="form-label">Adres</label>
+          <input type="text" class="form-control" id="inputAdres" placeholder="Uw adres en huisnummer">
         </div>
         <div class="col-md-6">
           <label for="inputLand" class="form-label">City</label>
           <select id="inputLand" class="form-select">
             <option selected>Kies een land</option>
             <option>België</option>
+            <option>Duitsland</option>
+            <option>Nederland</option>
+            
           </select>
         </div>
         <div class="col-md-4">
@@ -60,11 +68,13 @@
           <select id="inputProvincie" class="form-select">
             <option selected>Kies een provincie</option>
             <option>Antwerpen</option>
+            <option>Limburg</option>
+            <option>Luik</option>
           </select>
         </div>
         <div class="col-md-2">
-          <label for="inputZip" class="form-label">Postcode</label>
-          <input type="text" class="form-control" id="inputZip">
+          <label for="inputPostcode" class="form-label">Postcode</label>
+          <input type="number" class="form-control" id="inputPostcode">
         </div>
         <hr> 
         
@@ -78,7 +88,7 @@
             </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <input class="form-check-input" type="checkbox" value="" id="CheckVoor">
                 <label class="form-check-label" for="flexCheckDefault">
                   Ik ga akkoord met de algemene voorwaarden
                 </label>
@@ -89,28 +99,28 @@
           <div class="col-md-6">
             <h3>Betaling</h3>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="Banking app">
                 <label class="form-check-label" for="flexRadioDefault1">
                   Banking app
                 </label>
               </div>
 
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="Overschrijving">
                 <label class="form-check-label" for="flexRadioDefault1">
                   Overschrijving
                 </label>
               </div>
               
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="Visa card">
                 <label class="form-check-label" for="flexRadioDefault1">
                   Visa card
                 </label>
               </div>
 
               <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="Paypal">
                 <label class="form-check-label" for="flexRadioDefault1">
                   Paypal
                 </label>
@@ -119,12 +129,143 @@
         
           <hr>
 
-<div class="d-grid gap-2">
+          <div class="d-grid gap-2">
           <button type="submit" class="btn btn-primary">Wave your magic wand</button>
-        </div>
+          </div>
     </form>
+    </div>
+
+  
+    <div class="col-md-4">
+
+      <div class="alert alert-danger" role="alert" hidden="" id="fout">
+        <!--https://www.tutorialspoint.com/How-to-hide-HTML-element-with-JavaScript hiervan gebruik gemaakt om het te verbergen-->
+        <h4>Yikes errors</h4>
+        <p id="fouten"></p>
+      </div>
+      <div class="alert alert-success" role="alert" id="top" hidden="">
+        <h4>Goed Gedaan!</h4>
+        <p>Aww yeah, je werd geregistreerd. </p>
+      </div>
+      <div class="alert alert-info" role="alert" id="top" hidden="">
+        <h4>Betalingswijze</h4>
+        <p id="Betalingswijze"></p>
+      </div>
+      
+
+    </div>
+
+  </div>
+<!--Form is opgesteld aan de hand van bootstrap. hr heb ik hier gevonden https://www.w3schools.com/tags/tag_hr.asp -->
+        
+    <script >
+      
+
+
+      let errors = new Array();
+      console.log(errors)
+      
+      
+        function checkEmptyField(veld, melding){
+        //Dit is gebaseerd op https://www.tutorialspoint.com/javascript/javascript_form_validations.htm
+           
+        var x = document.getElementById(veld).value;
+          if( x == "" || x == null){
+         errors.push(melding);
+          
+        }
+        
+       }
+
+      function ValidateEmail(inputText){
+        //Dit is gebaseerd op https://www.w3resource.com/javascript/form/email-validation.php
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if(inputText.value.match(mailformat))
+    {
+  
+    return true;
+    }
+    else
+    {
+    errors.push("E-mailadres is niet correct");
+    return false;
+    }
+    }
+        
+    function validatePayment(veld){
+      //https://www.javatpoint.com/how-to-check-a-radio-button-using-javascript hier gevonden
+      if(document.getElementById(veld).checked == true){
+        document.getElementById("Betalingswijze").innerHTML = "Je betalingswijze is ..."
+      }
+
+    }
+
+    function checkPC(veld){
+      var x = document.getElementById(veld).value;
+          if( x == "" || x == null){
+         alert("Het veld postcode is vereist.");
+         }
+         if(x < 1000 || x > 9999){
+          alert("De waarde van postcode moet tussen 1000 en 9999 liggen");
+         }
+        }
+
+    function validateForm() {
+        
+        checkEmptyField("inputVoornaam","Het veld voornaam is vereist." );
+
+        checkEmptyField("inputNaam","Het veld naam is vereist." );
+
+        checkEmptyField("Gebruikersnaam","Het veld gebruikersnaam is vereist." );
+
+        ValidateEmail(document.mijnForm.inputEmail4);
+
+        checkEmptyField("InputWachtwoord","Het veld adres is vereist." );
+
+       let x = document.getElementById("InputWachtwoord").value;
+       let y = x.toString(); 
+        if(y.length < 7){
+          errors.push("Een wachtwoord moet minstens 7 tekens bevatten.")
+        }
+
+        checkEmptyField("InputWachtwoord2","Het veld adres is vereist." );
+
+        if(document.getElementById("InputWachtwoord").value != document.getElementById("InputWachtwoord2").value){
+          errors.push("De wachtwoorden moeten overeenkomen.")
+        }
+
+        checkEmptyField("InputAdres","Het veld adres is vereist." );
+
+        checkEmptyField("InputLand","Het veld land is vereist." );
+
+        checkEmptyField("InputProvincie","Het veld procincie is vereist." );
+        
+        checkPC("InputPostcode")
+
+        if(!document.getElementById("CheckVoor").checked){
+          errors.push("Je moet de algemene voorwaarden accepteren.")
+        }
+
+        if(errors.length = 0){
+          //https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp
+        document.getElementById("top").hidden = false;
+        }
+        else{
+          document.getElementById("fout").hidden = false;
+          let fouten = "";
+          errors.forEach(element => {fouten += element.toString });
+          document.getElementById("fouten").innerHTML = fouten;
+        }
+
+
+        errors.push("test");
 
         
 
+       } 
+
+      
+    console.log(errors)
+    </script>
 </body>
 </html>
