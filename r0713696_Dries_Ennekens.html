@@ -15,7 +15,7 @@
 
     <div class="col-md-8">
 
-    <form  class="row g-3" name="mijnForm" onsubmit="return(validateForm());">
+    <form  class="row g-3" name="mijnForm" >
 
         <div class="col-md-6">
           <label for="inputVoornaam" class="form-label">Voornaam</label>
@@ -130,7 +130,9 @@
           <hr>
 
           <div class="d-grid gap-2">
-          <button type="submit" class="btn btn-primary">Wave your magic wand</button>
+          <button type="button" class="btn btn-primary" onclick = "validateForm()">Wave your magic wand</button>
+
+          
           </div>
     </form>
     </div>
@@ -138,16 +140,16 @@
   
     <div class="col-md-4">
 
-      <div class="alert alert-danger" role="alert"  id="fout" hidden="true">
+      <div class="alert alert-danger" role="alert"  id="fout" hidden="true" name ="fout">
         <!--https://www.tutorialspoint.com/How-to-hide-HTML-element-with-JavaScript hiervan gebruik gemaakt om het te verbergen-->
-        <h4>Yikes errors</h4>
+        <h4>Yikes, errors...</h4>
         <p id="fouten"></p>
       </div>
       <div class="alert alert-success" role="alert" id="top" hidden="true">
         <h4>Goed Gedaan!</h4>
         <p>Aww yeah, je werd geregistreerd. </p>
       </div>
-      <div class="alert alert-info" role="alert" id="top" hidden="true">
+      <div class="alert alert-info" role="alert" id="betaal" hidden="true">
         <h4>Betalingswijze</h4>
         <p id="Betalingswijze"></p>
       </div>
@@ -155,7 +157,7 @@
 
     </div>
 
-    <button type="button" class="btn btn-dark" onclick = "validateForm()">Dark</button>
+    
 
   </div>
 <!--Form is opgesteld aan de hand van bootstrap. hr heb ik hier gevonden https://www.w3schools.com/tags/tag_hr.asp -->
@@ -165,7 +167,7 @@
 
 
       let errors = new Array();
-      
+      console.log(errors)
       
       
       function checkEmptyField(veld, melding){
@@ -210,7 +212,7 @@
       
     }
 
-    //Het werkt maar een melding in array
+    //Het werkt 
     function checkPC(veld){
     var x = document.getElementById(veld).value;
     if( x == "" || x == null){
@@ -223,7 +225,8 @@
     
 
     function validateForm() {
-        
+      //https://stackoverflow.com/questions/1232040/how-do-i-empty-an-array-in-javascript array leegmaken
+        errors.length = 0;
 
         checkEmptyField("inputVoornaam","Het veld voornaam is vereist." );
 
@@ -235,7 +238,7 @@
 
         checkEmptyField("inputWachtwoord","Het veld wachtwoord is vereist." );
 
-        //werkt ongeveer
+        //wachtwoord controle van de lengte
        let x = document.getElementById("inputWachtwoord").value;
        let y = x.toString(); 
         if(y.length < 7){
@@ -244,10 +247,12 @@
    
         checkEmptyField("inputWachtwoord2","Het veld herhaal wachtwoord is vereist." );
 
-        //werkt ongeveer
+        //controle of de wachtwoorden overeenkomen
         if(document.getElementById("inputWachtwoord").value != document.getElementById("inputWachtwoord2").value){
           errors.push("De wachtwoorden moeten overeenkomen.")
-        }
+        };
+        
+        
 
         checkEmptyField("inputAdres","Het veld adres is vereist." );
 
@@ -258,27 +263,34 @@
         
         checkPC("inputPostcode")
 
-
-        //Dit werkt behalve de push
+        //Controle van de voorwaarden
         if(!document.getElementById("CheckVoor").checked){
-          errors.push("Je moet de algemene voorwaarden accepteren.")
+          errors.push("Je moet de algemene voorwaarden accepteren.");
         }
 
         validatePayment();
-        console.log(errors)
-
-        //er is een array en er komen elementen 'in', maar nog moeilijk om ze te tonen. 
-        if(errors.length = 0 || errors.length == null){
-          //https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp
-        document.getElementById("top").hidden = false;
+        console.log(errors);
+        
+        
+        if(errors.length == 0){
+          document.getElementById("top").hidden = false;
+          document.getElementById("betaal").hidden = false;
+          document.getElementById("fout").hidden = true;
         }
         else{
-          document.getElementById("fout").hidden = false;
+          //https://www.w3schools.com/jsref/jsref_foreach.asp Inspiratie hier gehaald
           let fouten = "";
-          errors.forEach(element => {fouten += element.toString });
-          document.getElementById("fouten").innerHTML = errors[1];
+        function tonen(fout){
+          fouten += fout + "<br>";
         }
-
+        
+        errors.forEach(tonen);
+        document.getElementById("fouten").innerHTML = fouten;
+        document.getElementById("top").hidden = true;
+        document.getElementById("betaal").hidden = true;
+        document.getElementById("fout").hidden = false;
+        }
+        
 
         
 
@@ -286,7 +298,7 @@
 
        } 
 
-    
+   
     
     </script>
 </body>
